@@ -72,6 +72,76 @@ npm run web     # Web browser
    - iOS: Camera app
    - Android: Expo Go app
 
+## Publishing and Sharing with EAS Update (2025)
+
+### Initial Setup
+```bash
+# Install EAS CLI globally
+npm install -g eas-cli
+
+# Login to your Expo account
+eas login
+
+# Initialize EAS in your project (already done)
+eas init
+
+# Configure EAS Update
+eas update:configure
+```
+
+### Publishing Updates
+```bash
+# Auto-publish update (uses current git branch and commit message)
+eas update --auto
+
+# Publish with custom message
+eas update --message "Fixed login bug"
+
+# Publish to specific branch
+eas update --branch staging
+
+# Platform-specific update
+eas update --platform ios
+```
+
+### Testing Updates
+- Development builds: Run `eas update` and browse to the update
+- Release builds: Create .apk or simulator build
+- Local release testing:
+  - Android: `npx expo run:android --variant release`
+  - iOS: `npx expo run:ios --configuration Release`
+
+### EAS Build (for custom native modules)
+```bash
+# Create development builds
+eas build --platform android --profile development
+eas build --platform ios --profile development
+
+# Create production builds
+eas build --platform android --profile production
+eas build --platform ios --profile production
+
+# Submit to app stores
+eas submit --platform android
+eas submit --platform ios
+```
+
+### Channel Configuration
+Different build profiles can use different update channels:
+```json
+{
+  "build": {
+    "production": {
+      "channel": "production"
+    },
+    "preview": {
+      "channel": "staging",
+      "distribution": "internal"
+    }
+  }
+}
+```
+
 ## Important Configuration Details
 
 ### NativeWind Setup

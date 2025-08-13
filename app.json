@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "TravelApp",
-    "slug": "TravelApp",
+    "slug": "travel-app",
+    "owner": "barnes.software",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -30,6 +31,9 @@
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {}
+    }
   }
 }
